@@ -1,0 +1,28 @@
+{% extends 'partials/layout.twig' %}
+
+{% block content %}
+
+    <p>Iniciar sesión en EZ Customers:</p>
+
+    <form action="/actions/login" method="post">
+
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username" name="username">
+
+        <br />
+
+        <label for="password">Contraseña:</label>
+        <input type="text" id="password" name="password">
+
+        <br />
+
+        <input type="submit" value="Iniciar sesión">
+
+    </form>
+
+    {% if loginFailed %}
+        <p>El usuario o contraseña es incorrecto. Por favor, inténtelo de
+            nuevo.</p>
+    {% endif %}
+
+{% endblock %}

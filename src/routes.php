@@ -1,5 +1,6 @@
 <?php
 
+use Controller\LoginController;
 use Controller\MainController;
 use Phroute\Phroute\RouteCollector;
 
@@ -9,8 +10,8 @@ $router->get("/", function() {
 	return (new MainController())->render();
 });
 
-$router->get("/hola", function() {
-	return "Mundo";
+$router->post("/actions/login", function() {
+	return (new LoginController())->handleLogin();
 });
 
 $router->get("/404", function() {

@@ -64,6 +64,8 @@ Vagrant.configure("2") do |config|
         cp .env.example .env
     fi
 
+    echo "=================================================================="
     echo "The VM was loaded successfully! Access your site at localhost:3000"
+    echo "=================================================================="
   SHELL
 end

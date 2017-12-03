@@ -7,11 +7,15 @@ use Model\Customer;
 class MainController extends AbstractController {
 
 	function getTemplateName() {
-		return "main";
+		return empty($_SESSION["loggedInUserId"]) ? "login" : "main";
 	}
 
 	function getData() {
-		return ["customers" => Customer::all()];
+		if (empty($_SESSION["loggedInUserId"])) {
+			return ["loginFailed" => isset($_GET["loginFailed"])];
+		} else {
+			return ["customers" => Customer::all()];
+		}
 	}
 
 }

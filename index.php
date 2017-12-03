@@ -6,7 +6,7 @@ use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\Exception\HttpMethodNotAllowedException;
 
-require_once "src/index.php";
+require_once "src/setup.php";
 
 $dispatcher = new Dispatcher($router->getData());
 

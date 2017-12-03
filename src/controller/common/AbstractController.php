@@ -6,9 +6,9 @@ use Twig_Environment;
 use Twig_Loader_Filesystem;
 
 abstract class AbstractController {
-	abstract function getTemplateName();
+	protected abstract function getTemplateName();
 
-	abstract function getData();
+	protected abstract function getData();
 
 	function render() {
 		$data = $this->getData();
@@ -17,5 +17,10 @@ abstract class AbstractController {
 		$twig = new Twig_Environment($loader);
 
 		return $twig->render("$template.twig", $data);
+	}
+
+	protected static function redirect($route) {
+		header("Location: $route");
+		die();
 	}
 }
