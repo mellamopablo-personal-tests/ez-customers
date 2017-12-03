@@ -4,21 +4,17 @@ namespace Controller;
 
 use Model\User;
 
-class LoginController extends AbstractController {
+class LoginActionController extends ActionController {
 
-	function getTemplateName() {
-		return null;
-	}
-
-	function getData() {
-		return null;
+	function getRouteAccessibility() {
+		return "public";
 	}
 
 	private function failLogin() {
 		self::redirect("/?loginFailed");
 	}
 
-	function handleLogin() {
+	function performAction() {
 		$username = $_POST["username"];
 		$password = $_POST["password"];
 

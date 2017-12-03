@@ -2,23 +2,44 @@
 
 namespace Controller;
 
-use Twig_Environment;
-use Twig_Loader_Filesystem;
-
+/**
+ * Class AbstractController
+ *
+ * El AbstractController es la clase base de todos los controladores, y contiene
+ * métodos básicos para la accesibilidad de las rutas.
+ *
+ * @package Controller
+ */
 abstract class AbstractController {
-	protected abstract function getTemplateName();
+	/**
+	 * Función que deberá ser implementada por los controladores para
+	 * especificar su nivel de accesibilidad.
+	 * @return string El nivel de accesibilidad, que puede ser:
+	 * 	- public ----------> la ruta será accesible por todos
+	 * 	- authenticated ---> la ruta será accesible solo por usuarios que han
+	 *                       iniciado sesión
+	 *  - admin -----------> la ruta solo será accesible por administradores
+	 */
+	protected abstract function getRouteAccessibility();
 
-	protected abstract function getData();
-
-	function render() {
-		$data = $this->getData();
-		$template = $this->getTemplateName();
-		$loader = new Twig_Loader_Filesystem("src/views");
-		$twig = new Twig_Environment($loader);
-
-		return $twig->render("$template.twig", $data);
+	/**
+	 * Se asegura de que el usuario que visita la ruta tenga permisos
+	 * suficientes para acceder a ella. De lo contrario, lo redirige.
+	 */
+	protected function enforceAccessibilityRules() {
+		switch ($this->getRouteAccessibility()) {
+			case "authenticated":
+				if (empty($_SESSION["loggedInUserId"])) {
+					self::redirect("/login");
+				}
+				break;
+		}
 	}
 
+	/**
+	 * Redirige a un usuario
+	 * @param $route string La ruta a donde redirigirlo
+	 */
 	protected static function redirect($route) {
 		header("Location: $route");
 		die();

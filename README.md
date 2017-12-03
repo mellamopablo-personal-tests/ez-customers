@@ -23,3 +23,8 @@ desde `localhost:3000`.
 Por defecto, al hacer `vagrant up`, el proyecto se conecta a la base de datos
 local de la máquina virtual. Podemos conectarnos a otra base de datos 
 modificando los datos del archivo `.env`.
+
+## Iniciando sesión
+
+Podremos acceder a la aplicación con el nombre de usuario `admin` y la 
+contraseña `admin`.

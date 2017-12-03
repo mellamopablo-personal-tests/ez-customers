@@ -2,15 +2,19 @@
 
 namespace Controller;
 
-class MainController extends ActionController {
+class LoginViewController extends ViewController {
+
+	function getTemplateName() {
+		return "login";
+	}
 
 	function getRouteAccessibility() {
 		return "public";
 	}
 
-	function performAction() {
+	function getData() {
 		if (empty($_SESSION["loggedInUserId"])) {
-			self::redirect("/login");
+			return ["loginFailed" => isset($_GET["loginFailed"])];
 		} else {
 			self::redirect("/customers");
 		}

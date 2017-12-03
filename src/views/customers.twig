@@ -13,4 +13,12 @@
         {% endfor %}
     </ul>
 
+    {% if not user.is_read_only %}
+        <ul id="actionList">
+            <li>
+                <a href="/customers/new">Crear cliente</a>
+            </li>
+        </ul>
+    {% endif %}
+
 {% endblock %}

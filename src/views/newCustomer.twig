@@ -1,0 +1,38 @@
+{% extends 'partials/layout.twig' %}
+
+{% block content %}
+
+    <h2>Crear nuevo cliente</h2>
+
+    <form action="/customers" method="post">
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni">
+
+        <br />
+
+        <label for="first_name">Nombre:</label>
+        <input type="text" id="first_name" name="first_name">
+
+        <br />
+
+        <label for="last_names">Apellidos:</label>
+        <input type="text" id="last_names" name="last_names">
+
+        <br />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <br />
+
+        <label for="birth_date">Fecha de nacimiento:</label>
+        <input type="date" id="birth_date" name="birth_date">
+
+        <br />
+
+        <input type="submit" value="Crear cliente">
+
+    </form>
+
+{% endblock %}

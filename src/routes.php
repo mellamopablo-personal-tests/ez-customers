@@ -1,17 +1,37 @@
 <?php
 
-use Controller\LoginController;
+use Controller\LoginActionController;
+use Controller\LoginViewController;
+use Controller\CustomersViewController;
 use Controller\MainController;
+use Controller\NewCustomerViewController;
+use Controller\NewCustomerActionController;
 use Phroute\Phroute\RouteCollector;
 
 $router = new RouteCollector();
 
 $router->get("/", function() {
-	return (new MainController())->render();
+	return (new MainController())->configure();
+});
+
+$router->get("/login", function() {
+	return (new LoginViewController())->render();
+});
+
+$router->get("/customers", function() {
+	return (new CustomersViewController())->render();
+});
+
+$router->get("/customers/new", function() {
+	return (new NewCustomerViewController())->render();
+});
+
+$router->post("/customers", function() {
+	return (new NewCustomerActionController())->configure();
 });
 
 $router->post("/actions/login", function() {
-	return (new LoginController())->handleLogin();
+	return (new LoginActionController())->configure();
 });
 
 $router->get("/404", function() {
