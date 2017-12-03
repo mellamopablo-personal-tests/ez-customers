@@ -1,0 +1,16 @@
+{% extends 'partials/layout.twig' %}
+
+{% block content %}
+
+    <ul id="customerList">
+        {% for customer in customers %}
+            <li class="customer">
+                <a href="/customers/{{ customer.id }}">
+                    {{ customer.first_name }}
+                    {{ customer.last_names }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

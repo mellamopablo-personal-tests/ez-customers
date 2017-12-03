@@ -1,0 +1,17 @@
+{
+    "name": "mellamopablo/ez-customers",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pablo Rodríguez",
+            "email": "pabloviolin8@gmail.com"
+        }
+    ],
+    "require": {
+        "phroute/phroute": "^2.1",
+        "illuminate/database": "^5.5",
+        "vlucas/phpdotenv": "^2.4",
+        "twig/twig": "^2.4"
+    }
+}
