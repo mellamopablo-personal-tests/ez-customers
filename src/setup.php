@@ -5,6 +5,7 @@ session_start();
 require_once "env.php";
 require_once "database.php";
 
+require_once "model/Bill.php";
 require_once "model/Customer.php";
 require_once "model/User.php";
 
@@ -27,5 +28,6 @@ require_once "controller/NewUserActionController.php";
 require_once "controller/UserViewController.php";
 require_once "controller/UpdateUserActionController.php";
 require_once "controller/DeleteUserActionController.php";
+require_once "controller/NewBillViewController.php";
 
 require_once "routes.php";

@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Customer;
 use Model\User;
 
 /**
@@ -17,10 +18,15 @@ abstract class AbstractController {
 	 * Función que deberá ser implementada por los controladores para
 	 * especificar su nivel de accesibilidad.
 	 * @return string El nivel de accesibilidad, que puede ser:
-	 * 	- public ----------> la ruta será accesible por todos
-	 * 	- authenticated ---> la ruta será accesible solo por usuarios que han
-	 *                       iniciado sesión
-	 *  - admin -----------> la ruta solo será accesible por administradores
+	 * 	- public ---------------> la ruta será accesible por todos
+	 * 	- authenticated --------> la ruta será accesible solo por usuarios que
+	 *                            han iniciado sesión
+	 *  - customerOwner:<id> ---> la ruta será accesible por administradores
+	 *                            y usuarios que hayan iniciado sesión y sean
+	 *                            propietarios del cliente  especificado (p.ej:
+	 *                            customerOwner:12)
+	 *  - admin ----------------> la ruta solo será accesible por
+	 *                            administradores
 	 */
 	protected abstract function getRouteAccessibility();
 
@@ -29,21 +35,38 @@ abstract class AbstractController {
 	 * suficientes para acceder a ella. De lo contrario, lo redirige.
 	 */
 	protected function enforceAccessibilityRules() {
-		switch ($this->getRouteAccessibility()) {
-			case "authenticated":
-				if (empty($_SESSION["loggedInUserId"])) {
-					self::redirect("/login");
-				}
-				break;
-			case "admin":
-				if (empty($_SESSION["loggedInUserId"])) {
-					self::redirect("/login");
-				}
-				$user = User::find($_SESSION["loggedInUserId"]);
-				if (!$user || !$user->is_admin) {
-					self::redirect("/customers");
-				}
-				break;
+		$accessibility = $this->getRouteAccessibility();
+		$loggedInUser = !empty($_SESSION["loggedInUserId"])
+			? User::find($_SESSION["loggedInUserId"])
+			: null;
+		$matches = [];
+
+		if ($accessibility == "authenticated") {
+			if (!$loggedInUser) {
+				self::redirect("/login");
+			}
+
+		} else if ($accessibility == "admin") {
+
+			if (!$loggedInUser) {
+				self::redirect("/login");
+			} else if (!$loggedInUser || !$loggedInUser->is_admin) {
+				self::redirect("/404");
+			}
+
+		} else if (preg_match(
+			"/customerOwner:([0-9]+)/",
+			$accessibility,
+			$matches
+		)) {
+
+			$customer = Customer::find($matches[1]);
+
+			if (!$loggedInUser->is_admin &&
+				$loggedInUser->id !== $customer->user_id) {
+				self::redirect("/404");
+			}
+
 		}
 	}
 

@@ -2,7 +2,9 @@
 
 {% block content %}
 
-    <h2>Editar cliente: {{ customer.first_name }} {{ customer.last_names }}</h2>
+    <h2>{{ customer.first_name }} {{ customer.last_names }}</h2>
+
+    <h3>Editar cliente</h3>
 
     <form action="/customers/{{ customer.id }}" method="post">
 
@@ -58,7 +60,26 @@
 
     {% include 'partials/errorList.twig' %}
 
+    <h3>Facturas</h3>
+
+    <ul id="billList">
+        {% for bill in customerBills %}
+            <li>
+                <a href="/customers/{{ customer.id }}/bills/{{ bill.id }}">
+                    #{{ bill.id }} - {{ bill.concept }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Acciones</h3>
+
     <ul id="actionList">
+        <li>
+            <a href="/customers/{{ customer.id }}/bills/new">
+                Añadir factura
+            </a>
+        </li>
         <li>
             <a href="/customers/{{ customer.id }}?__method_override__=DELETE">
                 Eliminar cliente

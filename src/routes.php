@@ -2,11 +2,11 @@
 
 use Controller\CustomerViewController;
 use Controller\DeleteCustomerActionController;
-use Controller\DeleteUserActionController;
 use Controller\LoginActionController;
 use Controller\LoginViewController;
 use Controller\CustomerListViewController;
 use Controller\MainController;
+use Controller\NewBillViewController;
 use Controller\NewCustomerViewController;
 use Controller\NewCustomerActionController;
 use Controller\NewUserActionController;
@@ -60,6 +60,13 @@ $router->put("/customers/{id}", function($id) {
 
 $router->delete("/customers/{id}", function($id) {
 	return (new DeleteCustomerActionController($id))->configure();
+});
+
+///// CUSTOMERS --> BiLLS /////
+
+
+$router->get("/customers/{id}/bills/new", function($id) {
+return (new NewBillViewController($id))->render();
 });
 
 ///// USERS /////

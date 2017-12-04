@@ -36,5 +36,9 @@ class Customer extends EloquentModel {
 		return $v;
 	}
 
+	public function getBills() {
+		return Bill::where("customer_id", $this->id)->get();
+	}
+
 }
 
