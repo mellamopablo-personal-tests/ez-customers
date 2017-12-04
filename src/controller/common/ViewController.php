@@ -27,6 +27,21 @@ abstract class ViewController extends AbstractController {
 	protected abstract function getRouteAccessibility();
 
 	/**
+	 * Recupera los errores de validación, si existen, y los elimina de la
+	 * sesión para que no vuelvan a ser mostrados.
+	 * @return array Un array con los errores, o vacío si no hay.
+	 */
+	protected function takeValidationErrors() {
+		if (empty($_SESSION["validationErrors"])) {
+			return [];
+		}
+
+		$errors = $_SESSION["validationErrors"];
+		$_SESSION["validationErrors"] = [];
+		return $errors;
+	}
+
+	/**
 	 * Renderiza la pantilla
 	 * @return string El resultado en HTML, listo para ser enviado al cliente.
 	 */

@@ -5,10 +5,10 @@ namespace Controller;
 use Model\Customer;
 use Model\User;
 
-class CustomersViewController extends ViewController {
+class CustomerListViewController extends ViewController {
 
 	function getTemplateName() {
-		return "customers";
+		return "customerList";
 	}
 
 	function getRouteAccessibility() {

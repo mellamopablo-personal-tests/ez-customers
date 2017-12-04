@@ -11,9 +11,10 @@ require_once "src/setup.php";
 $dispatcher = new Dispatcher($router->getData());
 
 try {
-
 	$response = $dispatcher->dispatch(
-		$_SERVER['REQUEST_METHOD'],
+		empty($_REQUEST["__method_override__"])
+			? $_SERVER['REQUEST_METHOD']
+			: $_REQUEST["__method_override__"],
 		!empty($_GET["path"]) ? $_GET["path"] : "/"
 	);
 

@@ -5,10 +5,16 @@ namespace Controller;
 use Carbon\Carbon;
 use Model\Customer;
 
-class NewCustomerActionController extends ActionController {
+class UpdateCustomerActionController extends ActionController {
+
+	private $customerId;
 
 	function getRouteAccessibility() {
 		return "authenticated";
+	}
+
+	function __construct($customerId) {
+		$this->customerId = $customerId;
 	}
 
 	function performAction() {
@@ -18,14 +24,17 @@ class NewCustomerActionController extends ActionController {
 		$email = $_POST["email"];
 		$birth_date = $_POST["birth_date"];
 
-		$customer = new Customer;
+		$customer = Customer::find($this->customerId);
+
+		if (!$customer) {
+			self::redirect("/404");
+		}
 
 		$customer->dni = $dni;
 		$customer->first_name = $first_name;
 		$customer->last_names = $last_names;
 		$customer->email = $email;
 		$customer->birth_date = Carbon::createFromFormat("Y-m-d", $birth_date);
-		$customer->user_id = $_SESSION["loggedInUserId"];
 
 		$v = $customer->getValidator();
 
@@ -33,14 +42,13 @@ class NewCustomerActionController extends ActionController {
 
 			$customer->save();
 
-			self::redirect("/customers/$customer->id");
-
 		} else {
 
 			$_SESSION["validationErrors"] = $v->errors();
-			self::redirect("/customers/new");
 
 		}
+
+		self::redirect("/customers/$customer->id");
 	}
 
 }

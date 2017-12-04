@@ -1,0 +1,10 @@
+{% if errors is defined and errors|length > 0 %}
+    <p>Por favor, corrija los siguientes errores:</p>
+    <ul class="validationErrors">
+        {% for field in errors %}
+            {% for error in field %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}

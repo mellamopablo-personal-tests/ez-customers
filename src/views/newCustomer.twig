@@ -7,32 +7,34 @@
     <form action="/customers" method="post">
 
         <label for="dni">DNI:</label>
-        <input type="text" id="dni" name="dni">
+        <input type="text" id="dni" name="dni" required>
 
         <br />
 
         <label for="first_name">Nombre:</label>
-        <input type="text" id="first_name" name="first_name">
+        <input type="text" id="first_name" name="first_name" required>
 
         <br />
 
         <label for="last_names">Apellidos:</label>
-        <input type="text" id="last_names" name="last_names">
+        <input type="text" id="last_names" name="last_names" required>
 
         <br />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" required>
 
         <br />
 
         <label for="birth_date">Fecha de nacimiento:</label>
-        <input type="date" id="birth_date" name="birth_date">
+        <input type="date" id="birth_date" name="birth_date" required>
 
         <br />
 
         <input type="submit" value="Crear cliente">
 
     </form>
+
+    {% include 'partials/errorList.twig' %}
 
 {% endblock %}

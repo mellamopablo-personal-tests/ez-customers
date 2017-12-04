@@ -16,7 +16,8 @@ class NewCustomerViewController extends ViewController {
 
 	function getData() {
 		return [
-			"user" => User::find($_SESSION["loggedInUserId"])
+			"user" => User::find($_SESSION["loggedInUserId"]),
+			"errors" => $this->takeValidationErrors()
 		];
 	}
 

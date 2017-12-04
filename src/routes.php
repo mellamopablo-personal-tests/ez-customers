@@ -1,11 +1,15 @@
 <?php
 
+use Controller\CustomerViewController;
+use Controller\DeleteCustomerActionController;
 use Controller\LoginActionController;
 use Controller\LoginViewController;
-use Controller\CustomersViewController;
+use Controller\CustomerListViewController;
 use Controller\MainController;
 use Controller\NewCustomerViewController;
 use Controller\NewCustomerActionController;
+use Controller\NotFoundViewController;
+use Controller\UpdateCustomerActionController;
 use Phroute\Phroute\RouteCollector;
 
 $router = new RouteCollector();
@@ -19,7 +23,7 @@ $router->get("/login", function() {
 });
 
 $router->get("/customers", function() {
-	return (new CustomersViewController())->render();
+	return (new CustomerListViewController())->render();
 });
 
 $router->get("/customers/new", function() {
@@ -30,10 +34,22 @@ $router->post("/customers", function() {
 	return (new NewCustomerActionController())->configure();
 });
 
+$router->get("/customers/{id}", function($id) {
+	return (new CustomerViewController($id))->render();
+});
+
+$router->put("/customers/{id}", function($id) {
+	return (new UpdateCustomerActionController($id))->configure();
+});
+
+$router->delete("/customers/{id}", function($id) {
+	return (new DeleteCustomerActionController($id))->configure();
+});
+
 $router->post("/actions/login", function() {
 	return (new LoginActionController())->configure();
 });
 
 $router->get("/404", function() {
-	return "404 Not found";
+	return (new NotFoundViewController())->render();
 });

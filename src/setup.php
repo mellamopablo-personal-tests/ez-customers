@@ -12,10 +12,14 @@ require_once "controller/common/AbstractController.php";
 require_once "controller/common/ActionController.php";
 require_once "controller/common/ViewController.php";
 require_once "controller/MainController.php";
-require_once "controller/CustomersViewController.php";
+require_once "controller/CustomerViewController.php";
+require_once "controller/CustomerListViewController.php";
 require_once "controller/NewCustomerViewController.php";
 require_once "controller/NewCustomerActionController.php";
 require_once "controller/LoginViewController.php";
 require_once "controller/LoginActionController.php";
+require_once "controller/NotFoundViewController.php";
+require_once "controller/UpdateCustomerActionController.php";
+require_once "controller/DeleteCustomerActionController.php";
 
 require_once "routes.php";
