@@ -28,3 +28,12 @@ modificando los datos del archivo `.env`.
 
 Podremos acceder a la aplicación con el nombre de usuario `admin` y la 
 contraseña `admin`.
+
+## Tipos de usuario
+
+Existen dos tipos de usuario:
+
+* Administradores - Pueden ver y editar todos los clientes de todo el mundo. 
+Pueden dar de alta nuevos usuarios en la aplicación.
+* Usuarios - Solo pueden ver sus propios clientes. No pueden dar de alta a 
+nadie.

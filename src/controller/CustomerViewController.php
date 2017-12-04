@@ -23,14 +23,18 @@ class CustomerViewController extends ViewController {
 
 	function getData() {
 		$customer = Customer::find($this->customerId);
+		$user = User::find($_SESSION["loggedInUserId"]);
 
-		if (!$customer) {
+		$userCanSeeCustomer = $user->is_admin
+			|| $customer->user_id === $user->id;
+
+		if (!$customer || !$userCanSeeCustomer) {
 			self::redirect("/404");
 		}
 
 		return [
-			"customer" => Customer::find($this->customerId),
-			"user" => User::find($_SESSION["loggedInUserId"]),
+			"customer" => $customer,
+			"user" => $user,
 			"errors" => $this->takeValidationErrors()
 		];
 	}

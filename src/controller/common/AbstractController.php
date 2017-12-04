@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use Model\User;
+
 /**
  * Class AbstractController
  *
@@ -31,6 +33,15 @@ abstract class AbstractController {
 			case "authenticated":
 				if (empty($_SESSION["loggedInUserId"])) {
 					self::redirect("/login");
+				}
+				break;
+			case "admin":
+				if (empty($_SESSION["loggedInUserId"])) {
+					self::redirect("/login");
+				}
+				$user = User::find($_SESSION["loggedInUserId"]);
+				if (!$user || !$user->is_admin) {
+					self::redirect("/customers");
 				}
 				break;
 		}

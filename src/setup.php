@@ -21,5 +21,11 @@ require_once "controller/LoginActionController.php";
 require_once "controller/NotFoundViewController.php";
 require_once "controller/UpdateCustomerActionController.php";
 require_once "controller/DeleteCustomerActionController.php";
+require_once "controller/UserListViewController.php";
+require_once "controller/NewUserViewController.php";
+require_once "controller/NewUserActionController.php";
+require_once "controller/UserViewController.php";
+require_once "controller/UpdateUserActionController.php";
+require_once "controller/DeleteUserActionController.php";
 
 require_once "routes.php";

@@ -12,8 +12,7 @@
         <input type="text"
                id="dni"
                name="dni"
-               value="{{ customer.dni }}"
-               {% if user.is_read_only %}disabled{% endif %}>
+               value="{{ customer.dni }}">
 
         <br/>
 
@@ -22,8 +21,7 @@
                id="first_name"
                name="first_name"
                value="{{ customer.first_name }}"
-               required
-               {% if user.is_read_only %}disabled{% endif %}>
+               required>
 
         <br/>
 
@@ -32,8 +30,7 @@
                id="last_names"
                name="last_names"
                value="{{ customer.last_names }}"
-               required
-               {% if user.is_read_only %}disabled{% endif %}>
+               required>
 
         <br/>
 
@@ -42,8 +39,7 @@
                id="email"
                name="email"
                value="{{ customer.email }}"
-               required
-               {% if user.is_read_only %}disabled{% endif %}>
+               required>
 
         <br/>
 
@@ -52,8 +48,7 @@
                id="birth_date"
                name="birth_date"
                value="{{ customer.birth_date }}"
-               required
-               {% if user.is_read_only %}disabled{% endif %}>
+               required>
 
         <br/>
 
@@ -63,14 +58,12 @@
 
     {% include 'partials/errorList.twig' %}
 
-    {% if not user.is_read_only %}
-        <ul id="actionList">
-            <li>
-                <a href="/customers/{{ customer.id }}?__method_override__=DELETE">
-                    Eliminar cliente
-                </a>
-            </li>
-        </ul>
-    {% endif %}
+    <ul id="actionList">
+        <li>
+            <a href="/customers/{{ customer.id }}?__method_override__=DELETE">
+                Eliminar cliente
+            </a>
+        </li>
+    </ul>
 
 {% endblock %}

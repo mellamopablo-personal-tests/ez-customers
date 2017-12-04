@@ -13,12 +13,15 @@
         {% endfor %}
     </ul>
 
-    {% if not user.is_read_only %}
-        <ul id="actionList">
+    <ul id="actionList">
+        <li>
+            <a href="/customers/new">Crear cliente</a>
+        </li>
+        {% if user.is_admin %}
             <li>
-                <a href="/customers/new">Crear cliente</a>
+                <a href="/users">Gestionar usuarios</a>
             </li>
-        </ul>
-    {% endif %}
+        {% endif %}
+    </ul>
 
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Customer;
+use Model\User;
 
 class DeleteCustomerActionController extends ActionController {
 
@@ -18,8 +19,12 @@ class DeleteCustomerActionController extends ActionController {
 
 	function performAction() {
 		$customer = Customer::find($this->customerId);
+		$user = User::find($_SESSION["loggedInUserId"]);
 
-		if (!$customer) {
+		$userCanEditCustomer = $user->is_admin
+			|| $customer->user_id === $user->id;
+
+		if (!$customer || !$userCanEditCustomer) {
 			self::redirect("/404");
 		}
 

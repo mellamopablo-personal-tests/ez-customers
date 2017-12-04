@@ -1,0 +1,51 @@
+{% extends 'partials/layout.twig' %}
+
+{% block content %}
+
+    <h2>Editar usuario: {{ user.name }}</h2>
+
+    <form action="/users/{{ user.id }}" method="post">
+
+        <input type="hidden" name="__method_override__" value="PUT"/>
+
+        <label for="name">Nombre de usuario:</label>
+        <input type="text"
+               id="name"
+               name="name"
+               required
+               value="{{ user.name }}">
+
+        <br/>
+
+        <label for="email">Email:</label>
+        <input type="email"
+               id="email"
+               name="email"
+               required
+               value="{{ user.email }}">
+
+        <br/>
+
+        <label for="is_admin">El usuario tiene permisos de
+            administrador:</label>
+        <input type="checkbox"
+               id="is_admin"
+               name="is_admin" {% if user.is_admin %}checked{% endif %}>
+
+        <br/>
+
+        <input type="submit" value="Guardar">
+
+    </form>
+
+    {% include 'partials/errorList.twig' %}
+
+    <ul id="actionList">
+        <li>
+            <a href="/users/{{ user.id }}?__method_override__=DELETE">
+                Eliminar usuario
+            </a>
+        </li>
+    </ul>
+
+{% endblock %}

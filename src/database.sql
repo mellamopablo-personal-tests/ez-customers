@@ -8,7 +8,6 @@ CREATE TABLE users
   password     VARCHAR(32)            NOT NULL,
   email        VARCHAR(100)           NOT NULL,
   is_admin     BOOLEAN DEFAULT FALSE  NOT NULL,
-  is_read_only BOOLEAN DEFAULT FALSE  NOT NULL,
   created_at   DATETIME DEFAULT now() NOT NULL,
   updated_at   DATETIME DEFAULT now() NOT NULL
 );

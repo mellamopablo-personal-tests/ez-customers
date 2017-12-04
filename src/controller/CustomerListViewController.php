@@ -16,9 +16,12 @@ class CustomerListViewController extends ViewController {
 	}
 
 	function getData() {
+		$user = User::find($_SESSION["loggedInUserId"]);
 		return [
-			"customers" => Customer::all(),
-			"user" => User::find($_SESSION["loggedInUserId"])
+			"customers" => $user->is_admin
+				? Customer::all()
+				: Customer::where("user_id", $user->id)->get(),
+			"user" => $user
 		];
 	}
 
