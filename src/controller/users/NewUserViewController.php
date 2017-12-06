@@ -2,6 +2,13 @@
 
 namespace Controller;
 
+/**
+ * Class NewUserViewController
+ *
+ * Controlador que se encarga de renderizar la vista de creación de usuarios.
+ *
+ * @package Controller
+ */
 class NewUserViewController extends ViewController {
 
 	function getTemplateName() {

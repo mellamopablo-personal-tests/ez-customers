@@ -4,12 +4,19 @@ namespace Controller;
 
 use Model\Customer;
 
-class NewBillViewController extends ViewController {
+/**
+ * Class CustomerViewController
+ *
+ * Controlador que se encarga de renderizar la vista de clientes.
+ *
+ * @package Controller
+ */
+class CustomerViewController extends ViewController {
 
 	private $customerId;
 
 	function getTemplateName() {
-		return "newBill";
+		return "customer";
 	}
 
 	function getRouteAccessibility() {
@@ -23,12 +30,9 @@ class NewBillViewController extends ViewController {
 	function getData() {
 		$customer = Customer::find($this->customerId);
 
-		if (!$customer) {
-			self::redirect("/404");
-		}
-
 		return [
 			"customer" => $customer,
+			"customerBills" => $customer->getBills(),
 			"errors" => $this->takeValidationErrors()
 		];
 	}

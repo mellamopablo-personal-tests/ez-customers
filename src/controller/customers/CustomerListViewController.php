@@ -5,6 +5,13 @@ namespace Controller;
 use Model\Customer;
 use Model\User;
 
+/**
+ * Class CustomerListViewController
+ *
+ * Controlador que se encarga de renderizar la vista de la lista de clientes.
+ *
+ * @package Controller
+ */
 class CustomerListViewController extends ViewController {
 
 	function getTemplateName() {

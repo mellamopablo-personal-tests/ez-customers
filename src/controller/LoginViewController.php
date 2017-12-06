@@ -2,6 +2,13 @@
 
 namespace Controller;
 
+/**
+ * Class LoginViewController
+ *
+ * Controlador que se encarga de renderizar la vista de login.
+ *
+ * @package Controller
+ */
 class LoginViewController extends ViewController {
 
 	function getTemplateName() {

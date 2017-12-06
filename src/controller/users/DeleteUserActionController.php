@@ -2,9 +2,15 @@
 
 namespace Controller;
 
-use Model\Customer;
 use Model\User;
 
+/**
+ * Class DeleteUserActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de borrado de usuarios.
+ *
+ * @package Controller
+ */
 class DeleteUserActionController extends ActionController {
 
 	private $userId;

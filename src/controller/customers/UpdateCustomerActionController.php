@@ -5,6 +5,14 @@ namespace Controller;
 use Carbon\Carbon;
 use Model\Customer;
 
+/**
+ * Class UpdateCustomerActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de actualizado de
+ * clientes.
+ *
+ * @package Controller
+ */
 class UpdateCustomerActionController extends ActionController {
 
 	private $customerId;

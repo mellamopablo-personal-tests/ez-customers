@@ -17,6 +17,9 @@
         <li>
             <a href="/customers/new">Crear cliente</a>
         </li>
+        <li>
+            <a href="/users/{{ user.id }}">Mi perfil</a>
+        </li>
         {% if user.is_admin %}
             <li>
                 <a href="/users">Gestionar usuarios</a>

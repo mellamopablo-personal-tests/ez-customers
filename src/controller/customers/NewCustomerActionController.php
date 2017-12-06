@@ -5,6 +5,13 @@ namespace Controller;
 use Carbon\Carbon;
 use Model\Customer;
 
+/**
+ * Class NewCustomerActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de creación de clientes
+ *
+ * @package Controller
+ */
 class NewCustomerActionController extends ActionController {
 
 	function getRouteAccessibility() {

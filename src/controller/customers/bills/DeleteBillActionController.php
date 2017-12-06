@@ -4,6 +4,13 @@ namespace Controller;
 
 use Model\Bill;
 
+/**
+ * Class DeleteBillActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de borrado de facturas.
+ *
+ * @package Controller
+ */
 class DeleteBillActionController extends ActionController {
 
 	private $customerId;

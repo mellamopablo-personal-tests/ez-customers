@@ -4,6 +4,13 @@ namespace Controller;
 
 use Model\User;
 
+/**
+ * Class LoginActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de login.
+ *
+ * @package Controller
+ */
 class LoginActionController extends ActionController {
 
 	function getRouteAccessibility() {
@@ -11,7 +18,7 @@ class LoginActionController extends ActionController {
 	}
 
 	private function failLogin() {
-		self::redirect("/?loginFailed");
+		self::redirect("/login?loginFailed");
 	}
 
 	function performAction() {

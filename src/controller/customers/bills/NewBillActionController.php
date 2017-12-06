@@ -4,26 +4,28 @@ namespace Controller;
 
 use Model\Bill;
 
-class UpdateBillActionController extends ActionController {
+/**
+ * Class NewBillActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de creación de
+ * facturas.
+ *
+ * @package Controller
+ */
+class NewBillActionController extends ActionController {
 
 	private $customerId;
-	private $billId;
 
 	function getRouteAccessibility() {
 		return "customerOwner:$this->customerId";
 	}
 
-	function __construct($customerId, $billId) {
+	function __construct($customerId) {
 		$this->customerId = $customerId;
-		$this->billId = $billId;
 	}
 
 	function performAction() {
-		$bill = Bill::find($this->billId);
-
-		if (!$bill) {
-			self::redirect("/404");
-		}
+		$bill = new Bill;
 
 		$bill->concept = $_POST["concept"];
 		$bill->notes = $_POST["notes"];
@@ -32,6 +34,7 @@ class UpdateBillActionController extends ActionController {
 		$bill->payment_method = $_POST["payment_method"] === ""
 			? null
 			: $_POST["payment_method"];
+		$bill->customer_id = $this->customerId;
 
 		$v = $bill->getValidator();
 
@@ -39,13 +42,14 @@ class UpdateBillActionController extends ActionController {
 
 			$bill->save();
 
+			self::redirect("/customers/$this->customerId/bills/$bill->id");
+
 		} else {
 
 			$_SESSION["validationErrors"] = $v->errors();
+			self::redirect("/customers/$this->customerId/bills/new");
 
 		}
-
-		self::redirect("/customers/$this->customerId/bills/$bill->id");
 	}
 
 }

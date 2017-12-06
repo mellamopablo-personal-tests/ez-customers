@@ -4,6 +4,13 @@ namespace Controller;
 
 use Model\Customer;
 
+/**
+ * Class DeleteCustomerActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de borrado de clientes.
+ *
+ * @package Controller
+ */
 class DeleteCustomerActionController extends ActionController {
 
 	private $customerId;

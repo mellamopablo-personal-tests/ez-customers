@@ -5,8 +5,19 @@ namespace Model;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Valitron\Validator;
 
+/**
+ * Class Customer
+ *
+ * Representa un cliente en la base de datos.
+ *
+ * @package Model
+ */
 class Customer extends EloquentModel {
 
+	/**
+	 * @return Validator El objeto que comprueba si los datos del cliente
+	 * son válidos.
+	 */
 	public function getValidator() {
 		$v = new Validator(
 			[

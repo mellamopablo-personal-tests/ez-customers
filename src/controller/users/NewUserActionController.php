@@ -2,9 +2,15 @@
 
 namespace Controller;
 
-use Carbon\Carbon;
 use Model\User;
 
+/**
+ * Class NewUserActionController
+ *
+ * Controlador que se encarga de procesar las peticiones de creación de usuarios
+ *
+ * @package Controller
+ */
 class NewUserActionController extends ActionController {
 
 	function getRouteAccessibility() {

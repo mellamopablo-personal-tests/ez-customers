@@ -25,6 +25,9 @@ abstract class AbstractController {
 	 *                            y usuarios que hayan iniciado sesión y sean
 	 *                            propietarios del cliente  especificado (p.ej:
 	 *                            customerOwner:12)
+	 *  - userOwner:<id> -------> la ruta será accesible por administradores y
+	 *                            usuarios que estén modificando datos de
+	 *                            ellos mismos, y no de otros usuarios
 	 *  - admin ----------------> la ruta solo será accesible por
 	 *                            administradores
 	 */
@@ -51,6 +54,19 @@ abstract class AbstractController {
 			if (!$loggedInUser) {
 				self::redirect("/login");
 			} else if (!$loggedInUser || !$loggedInUser->is_admin) {
+				self::redirect("/404");
+			}
+
+		} else if (preg_match(
+			"/userOwner:([0-9]+)/",
+			$accessibility,
+			$matches
+		)) {
+
+			$user = User::find($matches[1]);
+
+			if (!$loggedInUser->is_admin &&
+				$loggedInUser->id !== $user->id) {
 				self::redirect("/404");
 			}
 
