@@ -20,10 +20,10 @@ class DeleteUserActionController extends ActionController {
 	function performAction() {
 		$user = User::find($this->userId);
 
-		if (User::count() === 1) {
+		if (User::where("is_admin", true)->count() === 1 && $user->is_admin) {
 			$_SESSION["validationErrors"] = [
 				[
-					"No se puede borrar el último usuario de la base de datos"
+					"No se puede borrar el último administrador de la base de datos"
 				]
 			];
 

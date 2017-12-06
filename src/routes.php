@@ -2,6 +2,7 @@
 
 use Controller\BillViewController;
 use Controller\CustomerViewController;
+use Controller\DeleteBillActionController;
 use Controller\DeleteCustomerActionController;
 use Controller\DeleteUserActionController;
 use Controller\LoginActionController;
@@ -15,6 +16,7 @@ use Controller\NewCustomerActionController;
 use Controller\NewUserActionController;
 use Controller\NewUserViewController;
 use Controller\NotFoundViewController;
+use Controller\UpdateBillActionController;
 use Controller\UpdateCustomerActionController;
 use Controller\UpdateUserActionController;
 use Controller\UserListViewController;
@@ -77,6 +79,14 @@ $router->post("/customers/{id}/bills", function($id) {
 
 $router->get("/customers/{cId}/bills/{bId}", function($cId, $bId) {
 	return (new BillViewController($cId, $bId))->render();
+});
+
+$router->put("/customers/{cId}/bills/{bId}", function($cId, $bId) {
+	return (new UpdateBillActionController($cId, $bId))->configure();
+});
+
+$router->delete("/customers/{cId}/bills/{bId}", function($cId, $bId) {
+	return (new DeleteBillActionController($cId, $bId))->configure();
 });
 
 ///// USERS /////

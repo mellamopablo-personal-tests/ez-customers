@@ -62,13 +62,8 @@
 
     <ul id="actionList">
         <li>
-            <a href="/customers/{{ customer.id }}/bills/new">
-                Añadir factura
-            </a>
-        </li>
-        <li>
-            <a href="/customers/{{ customer.id }}?__method_override__=DELETE">
-                Eliminar cliente
+            <a href="/customers/{{ customer.id }}/bills/{{ bill.id }}?__method_override__=DELETE">
+                Eliminar factura
             </a>
         </li>
     </ul>

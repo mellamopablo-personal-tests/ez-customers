@@ -66,7 +66,7 @@
         {% for bill in customerBills %}
             <li>
                 <a href="/customers/{{ customer.id }}/bills/{{ bill.id }}">
-                    #{{ bill.id }} - {{ bill.concept }}
+                    #{{ bill.id }} - {{ bill.concept }} | {{ bill.amount }} €
                 </a>
             </li>
         {% endfor %}

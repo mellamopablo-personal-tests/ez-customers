@@ -31,5 +31,7 @@ require_once "controller/DeleteUserActionController.php";
 require_once "controller/NewBillViewController.php";
 require_once "controller/NewBillActionController.php";
 require_once "controller/BillViewController.php";
+require_once "controller/UpdateBillActionController.php";
+require_once "controller/DeleteBillActionController.php";
 
 require_once "routes.php";
