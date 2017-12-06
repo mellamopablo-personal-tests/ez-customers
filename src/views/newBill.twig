@@ -5,7 +5,36 @@
     <h2>Crear una nueva factura para {{ customer.first_name }}
         {{ customer.last_names }}</h2>
 
-    {# TODO seguir aquí #}
+    <form action="/customers/{{ customer.id }}/bills" method="post">
+
+        <label for="concept">Concepto:</label>
+        <input type="text" id="concept" name="concept" required>
+
+        <br/>
+
+        <label for="notes">Notas:</label>
+        <textarea id="notes" name="notes"></textarea>
+
+        <br/>
+
+        <label for="amount">Cantidad:</label>
+        <input type="number" id="amount" name="amount" step=".01" required>
+
+        <br/>
+
+        <label for="paid">¿Pagada?</label>
+        <input type="checkbox" id="paid" name="paid">
+
+        <br/>
+
+        <label for="payment_method">Método de pago:</label>
+        <input type="text" id="payment_method" name="payment_method">
+
+        <br/>
+
+        <input type="submit" value="Crear factura">
+
+    </form>
 
     {% include 'partials/errorList.twig' %}
 

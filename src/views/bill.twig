@@ -1,0 +1,76 @@
+{% extends 'partials/layout.twig' %}
+
+{% block content %}
+
+    <p>Factura de <a href="/customers/{{ customer.id }}">
+            {{ customer.first_name }} {{ customer.last_names }}</a></p>
+
+    <h3>Editar factrua</h3>
+
+    <form action="/customers/{{ customer.id }}/bills/{{ bill.id }}"
+          method="post">
+
+        <input type="hidden" name="__method_override__" value="PUT"/>
+
+        <label for="concept">Concepto:</label>
+        <input type="text"
+               id="concept"
+               name="concept"
+               required
+               value="{{ bill.concept }}">
+
+        <br/>
+
+        <label for="notes">Notas:</label>
+        <textarea id="notes" name="notes">{{ bill.notes }}</textarea>
+
+        <br/>
+
+        <label for="amount">Cantidad:</label>
+        <input type="number"
+               id="amount"
+               name="amount"
+               step=".01"
+               required
+               value="{{ bill.amount }}">
+
+        <br/>
+
+        <label for="paid">¿Pagada?</label>
+        <input type="checkbox"
+               id="paid"
+               name="paid"
+               {% if bill.paid %}checked{% endif %}>
+
+        <br/>
+
+        <label for="payment_method">Método de pago:</label>
+        <input type="text"
+               id="payment_method"
+               name="payment_method"
+               value="{{ bill.payment_method }}">
+
+        <br/>
+
+        <input type="submit" value="Guardar">
+
+    </form>
+
+    {% include 'partials/errorList.twig' %}
+
+    <h3>Acciones</h3>
+
+    <ul id="actionList">
+        <li>
+            <a href="/customers/{{ customer.id }}/bills/new">
+                Añadir factura
+            </a>
+        </li>
+        <li>
+            <a href="/customers/{{ customer.id }}?__method_override__=DELETE">
+                Eliminar cliente
+            </a>
+        </li>
+    </ul>
+
+{% endblock %}

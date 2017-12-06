@@ -29,5 +29,7 @@ require_once "controller/UserViewController.php";
 require_once "controller/UpdateUserActionController.php";
 require_once "controller/DeleteUserActionController.php";
 require_once "controller/NewBillViewController.php";
+require_once "controller/NewBillActionController.php";
+require_once "controller/BillViewController.php";
 
 require_once "routes.php";
